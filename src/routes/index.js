@@ -1,4 +1,4 @@
-import { HeaderOnly } from "~/Layout"
+import { HeaderOnly } from "~/components/Layout"
 import Following from "~/pages/Following"
 import Home from "~/pages/Home"
 import Profile from "~/pages/Profile"
