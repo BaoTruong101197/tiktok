@@ -8,6 +8,7 @@ import classNames from 'classnames/bind';
 import images from '~/assets';
 import Propper from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +51,13 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button rect icon={images.plusIcon}>
+                        Upload
+                    </Button>
+                    <Button primary>Log in</Button>
+                    <img src={images.threeDots} alt="Three Dots" className={cx('three-dots')} />
+                </div>
             </div>
         </header>
     );

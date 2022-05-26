@@ -3,6 +3,8 @@ const image = {
     xMark: require('~/assets/img/circle-xmark.svg').default,
     searchHeader: require('~/assets/img/search-header.svg').default,
     BlueTick: require('~/assets/img/blue-tick.svg').default,
+    plusIcon: require('~/assets/img/plus-icon.svg').default,
+    threeDots: require('~/assets/img/ThreeDots.svg').default,
 };
 
 export default image;
