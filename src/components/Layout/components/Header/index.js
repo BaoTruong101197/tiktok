@@ -1,16 +1,89 @@
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless';
-
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
+
 import images from '~/assets';
 import Propper from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import {
+    CircleXMarkIcon,
+    HeaderSearchIcon,
+    PlusIcon,
+    ThreeDots,
+    LanguageIcon,
+    QuestionsIcon,
+    KeyboardShortCutIcon,
+    MessageIcon,
+    InboxIcon,
+    ViewProfileIcon,
+    GetCoinIcon,
+    SettingsIcon,
+    LogoutIcon,
+} from '~/components/Icons';
+import Menu from '~/components/Propper/Menu';
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+    {
+        icon: <LanguageIcon />,
+        title: 'English',
+        children: {
+            title: 'language',
+            data: [
+                {
+                    type: 'Language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'Language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
+    },
+    {
+        icon: <QuestionsIcon />,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <KeyboardShortCutIcon />,
+        title: 'Keyboard shortcuts',
+    },
+];
+
+const USER_MENU = [
+    {
+        icon: <ViewProfileIcon />,
+        title: 'View profile',
+        to: '/profile',
+    },
+    {
+        icon: <GetCoinIcon />,
+        title: 'Get coins',
+        to: '/coin',
+    },
+    {
+        icon: <SettingsIcon />,
+        title: 'Settings',
+        to: '/setting',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <LogoutIcon />,
+        title: 'Log out',
+        topLine: true,
+    },
+];
+
+const currentUser = false;
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
@@ -24,7 +97,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
                 <img src={images.logo} alt="Tiktok logo" />
-                <Tippy
+                <HeadlessTippy
                     visible={searchResult.length > 0}
                     interactive
                     render={(attrs) => (
@@ -43,20 +116,45 @@ function Header() {
                     <div className={cx('search')}>
                         <input placeholder="Search accounts and videos" spellCheck={false} />
                         <button className={cx('clear')}>
-                            <img src={images.xMark} alt="xmark" />
+                            <CircleXMarkIcon width="1.6rem" height="1.6rem" />
                         </button>
                         {/* <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} /> */}
                         <button className={cx('search-btn')}>
-                            <img src={images.searchHeader} alt="search header" />
+                            <HeaderSearchIcon width="2.4rem" height="2.4rem" />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('actions')}>
-                    <Button rect icon={images.plusIcon}>
-                        Upload
+                    <Button rect IconLeft={<PlusIcon width="2rem" height="2rem" />}>
+                        <span>Upload</span>
                     </Button>
-                    <Button primary>Log in</Button>
-                    <img src={images.threeDots} alt="Three Dots" className={cx('three-dots')} />
+                    {currentUser ? (
+                        <>
+                            <Tippy content="Message" placement="bottom">
+                                <MessageIcon className={cx('message-icon')} />
+                            </Tippy>
+                            <Tippy content="Inbox" placement="bottom">
+                                <InboxIcon className={cx('inbox-icon')} />
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
+                    {currentUser ? (
+                        <Menu items={USER_MENU}>
+                            <img
+                                src="https://scontent.fdad1-1.fna.fbcdn.net/v/t39.30808-6/274012128_2199895376814973_2944853333204392476_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=QgWX3IeH2LwAX_CyCw2&_nc_ht=scontent.fdad1-1.fna&oh=00_AT_gRGIdh2edBZ0qIkpdocZC-ArwKvaBjCkqQHfWDI_vrg&oe=629975BB"
+                                alt="profile avatar"
+                                className={cx('profile-avatar')}
+                            />
+                        </Menu>
+                    ) : (
+                        <Menu items={MENU_ITEMS}>
+                            <ThreeDots width="2.8rem" height="2.8rem" className={cx('three-dots')} />
+                        </Menu>
+                    )}
                 </div>
             </div>
         </header>

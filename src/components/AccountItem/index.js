@@ -1,6 +1,7 @@
 import styles from './AccountItem.module.scss';
 import classNames from 'classnames/bind';
 import images from '~/assets';
+import { BlueTick } from '../Icons';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,9 @@ function AccountItem() {
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
                     <span>Truong Quang Bao</span>
-                    <img src={images.BlueTick} alt="Blue tick" />
+                    <span className={cx('blue-tick')}>
+                        <BlueTick width="1.4rem" height="1.4rem" />
+                    </span>
                 </h4>
                 <span className={cx('username')}>baotruong</span>
             </div>

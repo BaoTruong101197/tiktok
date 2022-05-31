@@ -1,0 +1,53 @@
+// MENU
+.content {
+    width: 224px;
+    padding: 8px 0px;
+
+    // ITEM
+    .menu-item {
+        width: 100%;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 0;
+
+        span {
+            margin-right: 8px;
+        }
+
+        &:hover {
+            background: rgba(22, 24, 35, 0.03);
+        }
+    }
+}
+
+// HEADER
+.header-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: -8px;
+
+    span {
+        width: 100%;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .prev-icon {
+        position: absolute;
+        left: 28px;
+        cursor: pointer;
+    }
+}
+
+.top-line {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
