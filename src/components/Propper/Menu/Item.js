@@ -5,7 +5,6 @@ import Button from '~/components/Button';
 const cx = classNames.bind(styles);
 
 function Item({ item, onClick }) {
-    console.log(item.topLine);
     const languageType = item.type === 'Language' ? 'language-title' : '';
     return (
         <Button
